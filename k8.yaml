@@ -1,0 +1,11 @@
+# this command will create role and rolebinding
+
+kubectl create role pod-reader --verb=get,list,watch --resource=pods --namespace=default
+
+kubectl create rolebinding pod-reader-binding --role=pod-reader --user=system:serviceaccount:default:default --namespace=default
+
+# cluster role is used for cluster-wide permissions and role is used for namespace-specific permissions
+
+kubectl create clusterrole pod-reader --verb=get,list,watch --resource=pods
+
+kubectl create clusterrolebinding pod-reader-binding --clusterrole=pod-reader --user=system:serviceaccount:default:default
